@@ -1,0 +1,32 @@
+version: "2"
+reviews:
+  # Global rules applied across all files in your pull request
+  instructions: |
+    - Enforce clean code practices, DRY (Don't Repeat Yourself) principles, and clear variable naming.
+    - Check for potential security risks (e.g., XSS attacks, unsafe innerHTML usage, sensitive keys in client JS).
+    - Flag complex functions that can be refactored into smaller, modular functions.
+
+  # File-specific rules for JavaScript, HTML, and CSS
+  path_instructions:
+    # Vanilla JavaScript Rules
+    - path: "**/*.js"
+      instructions: |
+        - Enforce modern ES6+ standards (use const/let, arrow functions, template literals).
+        - Avoid using 'var'.
+        - Prevent dangerous DOM manipulations (flag 'innerHTML' and suggest 'textContent' or DOM methods).
+        - Ensure async operations use async/await with try/catch blocks rather than raw Promises.
+        - Ensure global scope pollution is avoided.
+
+    # HTML Rules
+    - path: "**/*.html"
+      instructions: |
+        - Ensure proper semantic HTML tags (nav, main, section, article, footer).
+        - Check for accessibility (all <img> tags must have descriptive alt attributes, buttons must have text or aria-labels).
+        - Ensure form inputs have associated <label> elements.
+
+    # CSS Rules
+    - path: "**/*.css"
+      instructions: |
+        - Check for DRY CSS (avoid repetitive style definitions).
+        - Suggest using CSS custom properties (variables) for repetitive colours and sizing.
+        - Ensure responsive design best practices (prefer rem/em/vw units over hardcoded high pixel values).
